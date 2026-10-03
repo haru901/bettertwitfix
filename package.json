@@ -1,0 +1,29 @@
+{
+  "name": "bettertwitfix",
+  "version": "1.0.0",
+  "description": "(A fork of TwitFix)\r Basic flask server that serves fixed twitter video embeds to desktop discord by using either the Twitter API or Youtube-DL to grab tweet video information. This also automatically embeds the first link in the text of non video tweets (API Only)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylanpdx/BetterTwitFix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dylanpdx/BetterTwitFix/issues"
+  },
+  "homepage": "https://github.com/dylanpdx/BetterTwitFix#readme",
+  "dependencies": {
+    "serverless": "^4.4.7"
+  },
+  "devDependencies": {
+    "serverless-plugin-common-excludes": "^4.0.0",
+    "serverless-plugin-include-dependencies": "^6.1.1",
+    "serverless-python-requirements": "^6.1.1",
+    "serverless-wsgi": "^3.0.5"
+  }
+}

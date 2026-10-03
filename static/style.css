@@ -1,0 +1,279 @@
+@font-face {
+	font-family: "Roboto";
+	src:
+		local("Roboto"),
+		url("/Roboto-Regular.ttf");
+	font-weight: 400;
+}
+
+:root {
+	--bg: #000;
+	--fg: #fff;
+	--gray: #777;
+	--lowcontrast: #222;
+	--accent: #1d9bf0;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--bg: #fff;
+		--fg: #000;
+		--lowcontrast: #ddd;
+	}
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	background: var(--bg);
+	color: var(--fg);
+	display: grid;
+	grid-template-rows: auto auto 1fr auto;
+	grid-template-areas:
+		"bannertop"
+		"header"
+		"main"
+		"bannerbot";
+	font-family: "Roboto", sans-serif;
+}
+
+header {
+	padding: 1em 1ch;
+	border-bottom: 1px solid var(--lowcontrast);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--bg);
+	grid-area: header;
+}
+
+header svg {
+	width: 24px;
+	height: 24px;
+	fill: var(--fg);
+}
+
+header h1 {
+	margin: 0 auto;
+	font-size: 24px;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	width: calc(100% - 4ch);
+	max-width: 80ch;
+	padding: 0 2ch;
+	margin: 0 auto;
+	grid-area: main;
+}
+
+em {
+	color: var(--accent);
+}
+
+.optiongroup:not(:first-of-type) {
+	margin: 1em auto;
+	border-top: 1px solid var(--lowcontrast);
+}
+
+label :where(:has(input), input) {
+	grid-area: input;
+}
+
+h3 {
+	grid-area: title;
+	margin: 0;
+}
+
+p {
+	grid-area: text;
+	color: var(--gray);
+	margin: 0;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: underline 1px dotted var(--accent);
+	transition: .2s all;
+}
+
+label a:where(:hover, :focus) {
+	color: var(--fg);
+	text-decoration-color: var(--fg);
+}
+
+label {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: auto auto;
+	grid-template-areas:
+		"title input"
+		"text text"
+		"options options";
+}
+
+label:not(:first-of-type) {
+	margin: 1em auto;
+}
+
+label:not(#instancePicker):hover {
+	cursor: pointer;
+}
+
+.checkboxcontainer {
+	position: relative;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	appearance: none;
+	border: 2px solid var(--gray);
+	background: var(--bg);
+	transition: .2s all;
+}
+
+input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+}
+
+input[type=radio] {
+	width: 15px;
+	height: 15px;
+	border-radius: 100%;
+}
+
+input[type=checkbox]+svg {
+	display: none;
+	width: 20px;
+	height: 20px;
+	fill: var(--fg);
+	position: absolute;
+	inset: 1px 2px;
+}
+
+input[type=checkbox]:hover,
+input[type=radio]:hover {
+	box-shadow: 0 0 0 5px var(--lowcontrast);
+}
+
+input[type=checkbox]:checked,
+input[type=radio]:checked {
+	background: var(--accent);
+	border-color: var(--accent);
+}
+
+input[type=checkbox]:checked+svg {
+	display: block;
+}
+
+button {
+	background: var(--accent);
+	color: var(--fg);
+	padding: 0 1ch;
+	border: none;
+	cursor: pointer;
+	border-radius: 1.5em;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+	transition: .2s all;
+}
+
+button:where(:hover, :focus) {
+	background: var(--fg);
+	color: var(--bg);
+}
+
+#instancePicker {
+	animation: fadein ease-in .3s 1 forwards;
+}
+
+	@keyframes fadein {
+		from { opacity: 0;}
+		to { opacity: 1;}
+	}
+
+table {
+	grid-area: options;
+	width: fit-content;
+	width: 100%;
+	text-align: center;
+	margin: 1em auto;
+}
+
+th {
+	padding: 0 0.5ch;
+}
+
+tbody {
+	color: var(--gray);
+}
+
+tbody tr:has(input[type=radio]:checked) {
+	color: var(--fg);
+}
+
+td label input {
+	grid-area: options;
+	margin: auto;
+}
+
+/* Popup */
+main:has(.popup) {
+	justify-content: center;
+}
+
+.popup {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: calc(100% - 4em);
+	max-height: 400px;
+	padding: 2em 0;
+}
+
+.popup h1 {
+	text-align: center;
+	margin: 0;
+}
+
+.popup .buttoncontainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+.popup button {
+	width: 60%;
+	height: 3em;
+	border: none;
+	margin: 1em auto;
+	font-size: larger;
+}
+
+/* "Not a phishing site" warning tape */
+aside {
+	background: repeating-linear-gradient(
+		45deg,
+		var(--bg) 1ch 2ch,
+		var(--accent) 2ch 3ch);
+	text-align: center;
+}
+
+aside em {
+	background: var(--bg);
+	color: var(--accent);
+}
+
+aside.top {
+	grid-area: bannertop;
+}
+
+aside.bottom {
+	grid-area: bannerbot;
+}

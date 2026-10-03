@@ -1,0 +1,15 @@
+{
+    "config": {
+        "appname": "vxTwitter",
+        "color": "#1DA1F2",
+        "database": "[url to mongo database goes here]",
+        "link_cache": "ram",
+        "method": "hybrid",
+        "repo": "https://github.com/dylanpdx/BetterTwitFix",
+        "table": "[database table here]",
+        "url": "https://vxtwitter.com",
+        "combination_method": "local",
+        "gifConvertAPI": "local",
+        "workaroundTokens":null
+    }
+}

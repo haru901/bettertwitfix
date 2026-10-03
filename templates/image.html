@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head %}
+
+<meta name="twitter:card" content="summary_large_image" />
+
+{% include 'tweetCommon.html' %}
+
+{% if combined_img %}
+<meta name="twitter:image" content="{{ combined_img }}" />
+{% else %}
+<meta name="twitter:image" content="{{ pic[0] }}" />
+{% endif %}
+
+{% for img in pic %}
+<meta property="og:image" content="{{ img }}" />
+{% endfor %}
+
+<meta name="twitter:creator" content="@{{ tweet['user_name'] }}" />
+
+<meta property="og:description" content="{{ desc }}" />
+
+<link rel="alternate" href="{{ host }}/oembed.json?desc={{ urlUser }}&user=Twitter&link={{ tweetLink }}&ttype=photo&provider={{ appname|urlencode }}" type="application/json+oembed" title="{{ tweet['user_name'] }}">
+<meta http-equiv="refresh" content="1; url = {{ tweetLink }}" /> {% endblock %} {% block body %} Redirecting you to the tweet in a moment. <a href="{{ tweetLink }}">Or click here.</a> {% endblock %}
